@@ -1,0 +1,97 @@
+.auth-form {
+  padding: 15px;
+  box-shadow: 0px 8px 40px rgba(0, 72, 251, 0.3);
+  border-radius: 14px;
+
+  &__control {
+    min-width: 200px;
+
+    &:hover {
+      .btn-eye {
+        opacity: 1;
+      }
+    }
+
+    &--eye {
+      .btn-eye {
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+    }
+  }
+}
+
+.form-control {
+  position: relative;
+  margin-bottom: 20px;
+
+  label {
+    padding-left: 10px;
+    font-weight: 300;
+    font-size: 11px;
+    line-height: 15px;
+    color: #96a9ba;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    background: #fdfdfd;
+    border: 1px solid rgba(150, 169, 186, 0.7);
+    box-sizing: border-box;
+    border-radius: 14px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.03em;
+    font-weight: normal;
+
+    &:focus {
+      font-size: 12px;
+      line-height: 18px;
+      letter-spacing: 0.03em;
+      font-weight: normal;
+      border-width: 1px;
+    }
+
+    &::placeholder {
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 18px;
+      color: #96a9ba;
+      letter-spacing: 0.03em;
+    }
+
+    &.ng-touched.ng-invalid {
+      border-color: #fd2828;
+    }
+  }
+
+  .text-danger {
+    padding-left: 10px;
+    font-weight: 300;
+    font-size: 11px;
+    line-height: 15px;
+    color: #fd2828;
+  }
+
+  .btn-eye {
+    position: absolute;
+    top: 26px;
+    right: 8px;
+
+    .eye {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+  }
+}
+
+.error-block {
+  border-radius: 10px;
+  padding: 6px;
+  color: #fd2828;
+  background-color: rgba($color: #fd2828, $alpha: 0.1);
+  font-size: 12px;
+  margin-bottom: 10px;
+}

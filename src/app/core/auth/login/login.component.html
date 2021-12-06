@@ -1,0 +1,43 @@
+<section>
+  <form class="auth-form d-flex flex-column"
+        *ngIf="form"
+        [formGroup]="form"
+        (ngSubmit)="send()"
+        autocomplete="off">
+
+    <section class="d-flex justify-content-between">
+      <h1>Login</h1>
+
+      <a class="btn-link ml-auto"
+         [routerLink]="['/'+appRoutes.REGISTRATION]"
+         routerLinkActive="router-link-active">Sign Up</a>
+    </section>
+
+    <div class="auth-form__control form-control">
+      <input formControlName="login"
+             type="text"
+             name="login"
+             id="login">
+    </div>
+
+    <div class="auth-form__control form-control">
+      <input formControlName="password"
+             type="password"
+             name="password"
+             id="password">
+    </div>
+
+    <section class="error-block"
+             *ngIf="errorMessage">
+      <p class="mb-0">
+        {{errorMessage}}
+      </p>
+    </section>
+
+    <section class="ml-auto">
+      <button class="btn"
+              type="submit">Login</button>
+    </section>
+
+  </form>
+</section>

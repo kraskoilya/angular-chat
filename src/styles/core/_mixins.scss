@@ -1,0 +1,35 @@
+@mixin ng-deep {
+  :host ::ng-deep {
+    @content;
+  }
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: 0;
+    height: 0;
+  }
+
+  &::-webkit-scrollbar-track {
+    width: 0;
+    height: 0;
+  }
+}
+
+@mixin ellipsis() {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

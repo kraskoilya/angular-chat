@@ -1,0 +1,67 @@
+@use "core" as *;
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+}
+
+input.hidden {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b5bac2 #f7f8fa;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f7f8fa;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #b5bac2;
+  border: 3px solid #f7f8fa;
+  border-radius: 20px;
+}
+
+body {
+  font-family: "Poppins", "arial", sans-serif;
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+  // Better cross browser font smoothing
+  text-rendering: optimizeLegibility;
+  font-variant-ligatures: none;
+  text-decoration-skip: objects;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+}
