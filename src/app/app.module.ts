@@ -1,6 +1,7 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -10,11 +11,13 @@ import { BaseUrlInterceptor } from './core/interceptors/api-http.interceptor';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { AUTH_TOKEN_STORAGE_KEY } from './core/mics/injection-tokens';
 import { SharedModule } from './shared/shared.module';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
     CoreModule,

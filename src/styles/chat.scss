@@ -1,0 +1,48 @@
+.user {
+  &__avatar {
+    margin-right: 15px;
+    width: 44px;
+    height: 44px;
+
+    img {
+      width: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    &--empty {
+      background-blend-mode: normal;
+      border: 1px solid #f3ba4a;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 20px;
+      font-weight: 500;
+      color: #5a6072;
+      background: #fff;
+    }
+  }
+
+  &__name {
+    padding-bottom: 4px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: #52585d;
+  }
+
+  &__email {
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: #96a9ba;
+  }
+
+  &__more {
+    cursor: pointer;
+  }
+}

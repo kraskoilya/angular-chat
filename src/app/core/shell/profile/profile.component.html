@@ -1,0 +1,31 @@
+<div class="profile user">
+
+
+  <div class="user__avatar">
+    <ng-container *ngIf="user?.avatar; else noAvatar">
+      <img width="44px"
+           height="44px"
+           [src]="user?.avatar"
+           alt="">
+    </ng-container>
+
+    <ng-template #noAvatar>
+      <div class="user__avatar--empty">{{user?.name| uppercase | slice: 0:1}}</div>
+    </ng-template>
+  </div>
+
+  <div>
+    <p class="mb-0 user__name">{{user?.name}}</p>
+
+    <p class="mb-0 user__email">{{user?.email}}</p>
+  </div>
+
+
+  <div class="ml-auto">
+    <section>
+      <div class="d-flex user__more "
+           [inlineSVG]="'/more.svg'"></div>
+    </section>
+  </div>
+
+</div>
