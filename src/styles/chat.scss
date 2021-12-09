@@ -35,7 +35,8 @@
     color: #52585d;
   }
 
-  &__email {
+  &__email,
+  &__date {
     font-weight: normal;
     font-size: 10px;
     line-height: 12px;
@@ -44,5 +45,16 @@
 
   &__more {
     cursor: pointer;
+  }
+
+  &.active {
+    .user__name {
+      color: #fdfdfe;
+    }
+
+    .user__email,
+    .user__date {
+      color: #fdfdfe;
+    }
   }
 }

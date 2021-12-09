@@ -1,17 +1,25 @@
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import { SharedModule } from '../shared/shared.module';
 import { ChatRoutingModule } from './chat-routing.module';
 import { ChatComponent } from './chat.component';
-
+import { ChatCardComponent } from './components/chats-panel/chat-card/chat-card.component';
+import { ChatsPanelComponent } from './components/chats-panel/chats-panel.component';
+import { MessagesPanelComponent } from './components/messages-panel/messages-panel.component';
+import { ChatsService } from './services/chats.service';
+import { MessageCardComponent } from './components/messages-panel/message-card/message-card.component';
+import { MessageInputComponent } from './components/messages-panel/message-input/message-input.component';
 
 @NgModule({
   declarations: [
-    ChatComponent
+    ChatComponent,
+    ChatsPanelComponent,
+    MessagesPanelComponent,
+    ChatCardComponent,
+    MessageCardComponent,
+    MessageInputComponent,
   ],
-  imports: [
-    CommonModule,
-    ChatRoutingModule
-  ]
+  imports: [CommonModule, ChatRoutingModule, SharedModule],
+  providers: [ChatsService, DatePipe],
 })
-export class ChatModule { }
+export class ChatModule {}

@@ -2,7 +2,7 @@ export enum AppRoute {
   AUTH = '',
   LOGIN = 'login',
   REGISTRATION = 'registration',
-  CHAT = 'chat',
+  CHAT = 'chats',
 }
 
 export const appRoutes = {

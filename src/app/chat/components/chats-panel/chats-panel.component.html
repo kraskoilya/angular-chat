@@ -1,0 +1,18 @@
+<div class="chats-panel">
+
+  <ng-container *ngIf="items?.length; else noChats">
+    <ng-container *ngFor="let chat of items">
+
+      <app-chat-card [routerLink]="['/chats', chat?.id]"
+                     routerLinkActive="router-link-active"
+                     [item]="chat"></app-chat-card>
+
+    </ng-container>
+  </ng-container>
+</div>
+
+
+<ng-template #noChats>
+  <h3>No Chats</h3>
+  <small>Start creating now</small>
+</ng-template>

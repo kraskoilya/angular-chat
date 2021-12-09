@@ -1,0 +1,5 @@
+.main-chat {
+  display: grid;
+  grid-template-columns: minmax(250px, 1fr) 3fr;
+  margin-top: 10px;
+}

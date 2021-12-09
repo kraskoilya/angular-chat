@@ -1,0 +1,30 @@
+<div class="chat user"
+     [ngClass]="{'active': item?.id?.toString() === activeChatId?.toString()}">
+
+  <div class="user__avatar">
+    <ng-container *ngIf="item?.avatar; else noAvatar">
+      <img width="44px"
+           height="44px"
+           [src]="item?.avatar"
+           alt="">
+    </ng-container>
+
+    <ng-template #noAvatar>
+      <div class="user__avatar--empty">{{item?.title | uppercase | slice: 0:1}}</div>
+    </ng-template>
+  </div>
+
+  <div class="flex-1 overflow-hidden">
+    <section class="d-flex w-100 align-items-start">
+      <p class="mb-0 user__name">{{item?.title}}</p>
+
+      <p class="mb-0 ml-auto user__date">{{item?.updatedAt | timeAgo}}</p>
+    </section>
+
+    <div class="chat__message">
+      <p class="mb-0 user__email">{{item?.last_message?.message || 'Not messages yet'}}</p>
+    </div>
+
+  </div>
+
+</div>
