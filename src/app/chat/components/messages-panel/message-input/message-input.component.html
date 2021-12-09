@@ -1,1 +1,22 @@
-<p>message-input works!</p>
+<form #chatBlock
+      class="chat-input"
+      autocomplete="off">
+
+  <div class="form-control mb-0 position-relative">
+    <input #inputMessage
+           (keydown)="triggerFunction($event)"
+           [formControl]="message"
+           type="text"
+           name="message"
+           id="message">
+
+    <button class="btn chat-input__btn"
+            [disabled]="!message.value"
+            type="button">
+      <p class="mb-0">Send</p>
+      <div class="d-flex"
+           [inlineSVG]="'/send.svg'"></div>
+    </button>
+  </div>
+
+</form>

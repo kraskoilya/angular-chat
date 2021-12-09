@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
+import { httpErrorResponceHandler } from 'src/app/core/helpers';
 import { BaseItem } from './base-item';
 import { BaseStorage } from './base-storage';
 
@@ -53,6 +54,35 @@ export abstract class BaseService<T extends BaseItem> {
           this.storage.itemsSubject.next(res);
         }
         return res;
+      }),
+      catchError((err) => {
+        return httpErrorResponceHandler(err);
+      })
+    );
+  }
+
+  /**
+   * Constructs a `POST` request that interprets the body as a JSON object
+   * and returns an observable of the response.
+   * Automatically update storage list of items.
+   *
+   * @param item Updatable item `Partial<T extends BaseItem>`.
+   * @param form `FormGroup` nested form for error handling.
+   * @param params optional partial `LoadingData`.
+   *
+   * @return  An `Observable` of the `HTTPResponse` for the request, with a response body in a `<T extends BaseItem>` type.
+   */
+  createItem(item: T): Observable<T> {
+    return this.http.post<T>(this.url, item).pipe(
+      tap((res) => {
+        if (this.storage) {
+          if (this.storage instanceof BaseStorage && this.storage.items) {
+            this.storage.items = [res].concat(this.storage.items);
+          }
+        }
+      }),
+      catchError((err) => {
+        return httpErrorResponceHandler(err);
       })
     );
   }

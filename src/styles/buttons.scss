@@ -8,6 +8,11 @@
   line-height: 18px;
   color: #fdfdfe;
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .btn-link {
