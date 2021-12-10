@@ -1,5 +1,11 @@
 .messages-panel {
   height: calc(100vh - 195px);
-  overflow: auto;
-  padding: 0 30px 30px 30px;
+  padding: 0 0 30px 30px;
+
+  &__items {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: auto;
+    padding-right: 30px;
+  }
 }

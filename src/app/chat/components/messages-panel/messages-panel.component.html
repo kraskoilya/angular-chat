@@ -2,12 +2,14 @@
 
   <section class="d-flex flex-column h-100"
            *ngIf="items; else noChat">
-    <section>
+    <section class="messages-panel__items">
       <ng-container *ngFor="let message of items">
 
         <div [ngClass]="{'ml-auto': self?.id === message?.user?.id}">
 
-          <app-message-card [item]="message"></app-message-card>
+          <app-message-card [item]="message"
+                            [position]="self?.id === message?.user?.id ? 'right' : 'left'"></app-message-card>
+
         </div>
 
       </ng-container>

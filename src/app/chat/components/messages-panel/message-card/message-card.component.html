@@ -1,1 +1,42 @@
-<p>message-card works!</p>
+<div class="message-card">
+
+  <div class="message-card__user"
+       [ngClass]="position">
+
+    <p class="message-card__user__name">{{item?.user?.name}}</p>
+
+    <section class="message-card__wrapper"
+             [ngClass]="position">
+      <div class="message-card__user__avatar">
+        <ng-container *ngIf="item?.user?.avatar; else noAvatar">
+          <img width="44px"
+               height="44px"
+               [src]="item?.user?.avatar"
+               alt="">
+        </ng-container>
+
+        <ng-template #noAvatar>
+          <div class="message-card__user__avatar--empty">{{item?.user?.name| uppercase | slice: 0:1}}</div>
+        </ng-template>
+      </div>
+
+
+      <div class="message-card__message"
+           [ngClass]="position">
+
+        <p class="text">
+          {{item?.message}}
+        </p>
+
+        <p class="mb-0 date ml-auto">
+          {{item.createdAt | date: 'HH:mm'}}
+        </p>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+</div>
