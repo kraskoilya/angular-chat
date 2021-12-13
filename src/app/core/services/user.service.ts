@@ -12,7 +12,9 @@ export class UserService {
 
   constructor(private authService: AuthService, private http: HttpClient) {
     this.authService.isAuthorized$.subscribe((res) => {
-      this.self();
+      if (res) {
+        this.self();
+      }
     });
   }
 

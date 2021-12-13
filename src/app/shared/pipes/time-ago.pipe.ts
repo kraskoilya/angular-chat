@@ -21,11 +21,11 @@ export class TimeAgoPipe implements PipeTransform {
     let interval = seconds / 31536000;
 
     if (interval > 1) {
-      return this.datePipe.transform(new Date(value), 'dd/MM/yyyy');
+      return this.datePipe.transform(new Date(value), 'dd.MM.yyyy');
     }
     interval = seconds / 2592000;
     if (interval > 1) {
-      return this.datePipe.transform(new Date(value), 'dd/MM/yyyy hh:mm:ss');
+      return this.datePipe.transform(new Date(value), 'dd.MM.yyyy hh:mm');
     }
     interval = seconds / 86400;
     if (interval > 1) {

@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { appRoutes } from 'src/app/app.routes';
 import { httpErrorResponceHandler } from '../helpers';
 import { AUTH_TOKEN_STORAGE_KEY } from '../mics/injection-tokens';
 import { AccessData } from '../models/auth';
@@ -106,5 +107,13 @@ export class AuthService {
         return httpErrorResponceHandler(err, form);
       })
     );
+  }
+
+  logout(notifyServer?: boolean): void {
+    this.http.post(`${this.URL}/logout`, {}).subscribe(() => {
+      this.router.navigate([appRoutes.LOGIN]);
+    });
+    this.clearToken();
+    this.isAuthorized$.next(false);
   }
 }

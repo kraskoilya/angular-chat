@@ -77,7 +77,9 @@ export abstract class BaseService<T extends BaseItem> {
       tap((res) => {
         if (this.storage) {
           if (this.storage instanceof BaseStorage && this.storage.items) {
-            this.storage.items = [res].concat(this.storage.items);
+            this.storage.items = [new this.model(res)].concat(
+              this.storage.items
+            );
           }
         }
       }),

@@ -20,12 +20,24 @@
     <p class="mb-0 user__email">{{user?.email}}</p>
   </div>
 
-
   <div class="ml-auto">
     <section>
       <div class="d-flex user__more "
+           nz-dropdown
+           [nzDropdownMenu]="menu"
+           nzTrigger="click"
            [inlineSVG]="'/more.svg'"></div>
     </section>
   </div>
 
 </div>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu
+      nzSelectable>
+    <li nz-menu-item>Edit profile</li>
+    <li nz-menu-item
+        (click)="logout()"
+        nzDanger>Logout</li>
+  </ul>
+</nz-dropdown-menu>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { createHttpParams } from 'src/app/core/helpers';
 import { User } from 'src/app/core/models/user';
+import { SocketService } from 'src/app/core/services/socket.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { Message } from '../../models/message';
 import { MessagesService } from '../../services/messages.service';
@@ -23,10 +25,26 @@ export class MessagesPanelComponent implements OnInit {
   constructor(
     private userService: UserService,
     private crudService: MessagesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private socketService: SocketService
   ) {}
 
   ngOnInit(): void {
+    this.socketService
+      .on()
+      .pipe(
+        filter(
+          (data: any) =>
+            data.event === 'send_message' && data.data.user.id !== this.self.id
+        )
+      )
+      .subscribe((data: any) => {
+        this.items.unshift({
+          ...data.data.message,
+          user: new User(data.data.user),
+        });
+      });
+
     this.route.params.subscribe((res) => {
       if (res.id) {
         if (this.crudService.storage.items) {
@@ -40,8 +58,6 @@ export class MessagesPanelComponent implements OnInit {
 
   private getItems(params?: { [key: string]: any }): void {
     const httpParams = createHttpParams(params);
-    this.crudService.getItems(httpParams).subscribe(() => {
-      console.log(this.items);
-    });
+    this.crudService.getItems(httpParams).subscribe(() => {});
   }
 }
