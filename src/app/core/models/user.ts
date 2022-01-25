@@ -1,10 +1,9 @@
-export class User {
-  id!: number;
+import { BaseItem } from 'src/app/shared/base/base-item';
+
+export class User extends BaseItem {
   first_name!: string;
   last_name!: string;
   email!: string;
-  createdAt!: string;
-  updatedAt!: string;
   avatar?: string;
 
   get name(): string {
@@ -12,7 +11,7 @@ export class User {
   }
 
   constructor(data: Partial<User>) {
-    this.update(data);
+    super(data);
   }
 
   update(data: Partial<User>): void {
