@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { createHttpParams } from 'src/app/core/helpers';
+import { ChatCreateComponent } from 'src/app/shared/modals/chat-create/chat-create.component';
 import { Chat } from '../../models/chat';
 import { ChatsService } from '../../services/chats.service';
 
@@ -13,10 +15,20 @@ export class ChatsPanelComponent implements OnInit {
     return this.crudService.storage.items;
   }
 
-  constructor(private crudService: ChatsService) {}
+  constructor(
+    private crudService: ChatsService,
+    private modalService: NzModalService
+  ) {}
 
   ngOnInit(): void {
     this.getItems();
+  }
+
+  createChat(): void {
+    this.modalService.create({
+      nzTitle: 'Create new chat',
+      nzContent: ChatCreateComponent,
+    });
   }
 
   private getItems(params?: { [key: string]: any }): void {

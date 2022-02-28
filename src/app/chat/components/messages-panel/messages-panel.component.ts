@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { createHttpParams } from 'src/app/core/helpers';
@@ -13,7 +13,7 @@ import { MessagesService } from '../../services/messages.service';
   templateUrl: './messages-panel.component.html',
   styleUrls: ['./messages-panel.component.scss'],
 })
-export class MessagesPanelComponent implements OnInit {
+export class MessagesPanelComponent implements OnInit, OnDestroy {
   get items(): Message[] {
     return this.crudService.storage.items as any;
   }
@@ -28,6 +28,10 @@ export class MessagesPanelComponent implements OnInit {
     private route: ActivatedRoute,
     private socketService: SocketService
   ) {}
+
+  ngOnDestroy(): void {
+    this.crudService.storage.flashAllData();
+  }
 
   ngOnInit(): void {
     this.socketService

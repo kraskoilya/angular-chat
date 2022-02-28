@@ -21,29 +21,29 @@ export class TimeAgoPipe implements PipeTransform {
     let interval = seconds / 31536000;
 
     if (interval > 1) {
-      return this.datePipe.transform(new Date(value), 'dd.MM.yyyy');
+      return this.datePipe.transform(new Date(value), ' dd.MM.yyyy');
     }
     interval = seconds / 2592000;
     if (interval > 1) {
-      return this.datePipe.transform(new Date(value), 'dd.MM.yyyy hh:mm');
+      return this.datePipe.transform(new Date(value), ' dd.MM.yyyy hh:mm');
     }
     interval = seconds / 86400;
     if (interval > 1) {
-      return Math.floor(interval) + 'days ago';
+      return Math.floor(interval) + ' days ago';
     }
     interval = seconds / 3600;
     if (interval > 1) {
-      return Math.floor(interval) + 'hours ago';
+      return Math.floor(interval) + ' hours ago';
     }
     interval = seconds / 60;
     if (interval > 1) {
-      return Math.floor(interval) + 'minutes ago';
+      return Math.floor(interval) + ' minutes ago';
     }
 
     interval = seconds;
     if (interval < 0) {
       interval = 0;
     }
-    return Math.floor(interval) + 'seconds ago';
+    return Math.floor(interval) + ' seconds ago';
   }
 }

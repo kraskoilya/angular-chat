@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { httpErrorResponceHandler } from 'src/app/core/helpers';
@@ -72,7 +73,7 @@ export abstract class BaseService<T extends BaseItem> {
    *
    * @return  An `Observable` of the `HTTPResponse` for the request, with a response body in a `<T extends BaseItem>` type.
    */
-  createItem(item: T): Observable<T> {
+  createItem(item: T, form?: FormGroup): Observable<T> {
     return this.http.post<T>(this.url, item).pipe(
       tap((res) => {
         if (this.storage) {
@@ -84,7 +85,7 @@ export abstract class BaseService<T extends BaseItem> {
         }
       }),
       catchError((err) => {
-        return httpErrorResponceHandler(err);
+        return httpErrorResponceHandler(err, form);
       })
     );
   }

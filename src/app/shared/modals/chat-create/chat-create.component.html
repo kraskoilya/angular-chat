@@ -1,0 +1,47 @@
+<section>
+  <form class="d-flex flex-column"
+        *ngIf="form"
+        [formGroup]="form"
+        (ngSubmit)="send()"
+        autocomplete="off">
+
+    <section class="d-flex justify-content-between">
+      <h1>New Chat</h1>
+    </section>
+
+    <div class="auth-form__control form-control">
+      <input formControlName="title"
+             type="text"
+             placeholder="Send Title"
+             name="title"
+             id="title">
+    </div>
+
+    <!-- <div class="auth-form__control form-control">
+      <input formControlName="password"
+             type="password"
+             name="password"
+             id="password">
+    </div> -->
+
+    <section class="error-block"
+             *ngIf="errorMessage">
+      <p class="mb-0">
+        {{errorMessage}}
+      </p>
+    </section>
+
+  </form>
+</section>
+
+<nz-modal>
+
+  <div *nzModalFooter>
+    <button nz-button
+            nzType="default"
+            (click)="destroyModal()">Cancel</button>
+    <button nz-button
+            nzType="primary"
+            (click)="send()">Submit</button>
+  </div>
+</nz-modal>

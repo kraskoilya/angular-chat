@@ -13,6 +13,22 @@
 
 
 <ng-template #noChats>
-  <h3>No Chats</h3>
+  <div class="d-flex flex-column"></div>
+  <section class="d-flex">
+    <h3 class="mb-0">No Chats</h3>
+
+    <div class="ml-auto">
+      <button (click)="createChat()"
+              nz-button
+              nzType="primary"
+              nzShape="circle">
+        <i nz-icon
+           nzType="plus"
+           nzTheme="outline"></i>
+      </button>
+
+    </div>
+
+  </section>
   <small>Start creating now</small>
 </ng-template>
