@@ -8,6 +8,8 @@ import {
   markFormDirty,
   triggerFormValidation,
 } from 'src/app/core/helpers';
+import { User } from 'src/app/core/models/user';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-chat-create',
@@ -16,17 +18,19 @@ import {
 })
 export class ChatCreateComponent implements OnInit {
   form!: FormGroup;
+  users!: User[];
 
   errorMessage!: string | null;
 
   constructor(
     private fb: FormBuilder,
     private chatsService: ChatsService,
-    private modal: NzModalRef
+    private modal: NzModalRef,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.initilizationForm();
+    this.getUsers();
   }
 
   destroyModal(): void {
@@ -38,8 +42,6 @@ export class ChatCreateComponent implements OnInit {
     this.form.markAllAsTouched();
     this.form.markAsDirty();
 
-    console.log(this.form);
-
     if (this.form.invalid) {
       triggerFormValidation(this.form);
       focusFirstInvalidField();
@@ -49,8 +51,18 @@ export class ChatCreateComponent implements OnInit {
 
     const body = { ...this.form.value };
 
+    body.users = body.users
+      ? body.users.map((id: number) => {
+          return {
+            id: id,
+          };
+        })
+      : [];
+
     this.chatsService.createItem(body, this.form).subscribe(
-      (res) => {},
+      (res) => {
+        this.modal.close();
+      },
       (err: HttpErrorResponse) => {
         console.log(err);
         if (err.status === 401) {
@@ -63,11 +75,19 @@ export class ChatCreateComponent implements OnInit {
   private initilizationForm(): void {
     this.form = this.fb.group({
       title: [null, Validators.required],
+      users: [null, Validators.required],
       // password: [null, Validators.required],
     });
 
     this.form.valueChanges.subscribe((res) => {
       this.errorMessage = null;
+    });
+  }
+
+  private getUsers(): void {
+    this.userService.getUsers().subscribe((res) => {
+      this.users = res;
+      this.initilizationForm();
     });
   }
 }

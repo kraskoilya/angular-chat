@@ -8,7 +8,6 @@ import { ChatsPanelComponent } from './components/chats-panel/chats-panel.compon
 import { MessageCardComponent } from './components/messages-panel/message-card/message-card.component';
 import { MessageInputComponent } from './components/messages-panel/message-input/message-input.component';
 import { MessagesPanelComponent } from './components/messages-panel/messages-panel.component';
-import { ChatsService } from './services/chats.service';
 
 @NgModule({
   declarations: [
@@ -20,6 +19,6 @@ import { ChatsService } from './services/chats.service';
     MessageInputComponent,
   ],
   imports: [CommonModule, ChatRoutingModule, SharedModule],
-  providers: [ChatsService, DatePipe],
+  providers: [DatePipe],
 })
 export class ChatModule {}

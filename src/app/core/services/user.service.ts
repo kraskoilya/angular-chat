@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { User } from '../models/user';
 import { AuthService } from './auth.service';
 
@@ -24,6 +24,14 @@ export class UserService {
       tap((el) => {
         this.user = new User(el);
         return el;
+      })
+    );
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>('users').pipe(
+      map((el) => {
+        return el.map((item) => new User(item));
       })
     );
   }

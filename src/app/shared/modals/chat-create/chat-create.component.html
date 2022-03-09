@@ -17,12 +17,16 @@
              id="title">
     </div>
 
-    <!-- <div class="auth-form__control form-control">
-      <input formControlName="password"
-             type="password"
-             name="password"
-             id="password">
-    </div> -->
+    <div class="form-control w-100">
+      <nz-select class="w-100"
+                 nzMode="multiple"
+                 nzPlaceHolder="Please select users"
+                 formControlName="users">
+        <nz-option *ngFor="let user of users"
+                   [nzLabel]="user.name"
+                   [nzValue]="user.id"></nz-option>
+      </nz-select>
+    </div>
 
     <section class="error-block"
              *ngIf="errorMessage">
