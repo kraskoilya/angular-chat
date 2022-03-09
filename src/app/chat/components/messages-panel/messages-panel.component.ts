@@ -35,13 +35,8 @@ export class MessagesPanelComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.socketService
-      .on()
-      .pipe(
-        filter(
-          (data: any) =>
-            data.event === 'send_message' && data.data.user.id !== this.self.id
-        )
-      )
+      .on('send_message')
+      .pipe(filter((data: any) => data.data.user.id !== this.self.id))
       .subscribe((data: any) => {
         this.items.unshift({
           ...data.data.message,

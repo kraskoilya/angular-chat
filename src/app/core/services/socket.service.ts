@@ -16,9 +16,9 @@ export class SocketService {
     });
   }
 
-  on(): Observable<unknown> {
+  on(eventName: string): Observable<unknown> {
     return new Observable((observer) => {
-      this.socket.on('send_message', (msg) => {
+      this.socket.on(eventName, (msg) => {
         observer.next(msg);
       });
     });
