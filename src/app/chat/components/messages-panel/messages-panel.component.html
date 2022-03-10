@@ -2,7 +2,8 @@
 
   <section class="d-flex flex-column-reverse h-100"
            *ngIf="items; else noChat">
-    <section class="messages-panel__items">
+    <section class="messages-panel__items"
+             *ngIf="items?.length; else noMessages">
       <ng-container *ngFor="let message of items">
 
         <div [ngClass]="{'ml-auto': self?.id === message?.user?.id}">
@@ -25,6 +26,15 @@
 
 <ng-template #noChat>
   <section class="d-flex align-items-center justify-content-center h-100">
-    <p class="mb-0 d-flex">Start chatting...</p>
+    <p class="mb-0 d-flex align-items-center">Choose chat or <a nz-button
+         [nzSize]="'small'"
+         (click)="createChat()"
+         nzType="link">create</a> new</p>
+  </section>
+</ng-template>
+
+<ng-template #noMessages>
+  <section class="d-flex align-items-center justify-content-center h-100">
+    <p class="mb-0 d-flex align-items-center">Start chatting...</p>
   </section>
 </ng-template>

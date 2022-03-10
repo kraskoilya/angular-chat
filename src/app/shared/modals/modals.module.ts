@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzModulesModule } from '../nz-modules/nz-modules.module';
 import { ChatCreateComponent } from './chat-create/chat-create.component';
+import { UserUpdateComponent } from './user-update/user-update.component';
 
 @NgModule({
-  declarations: [ChatCreateComponent],
+  declarations: [ChatCreateComponent, UserUpdateComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, NzModulesModule],
-  exports: [ChatCreateComponent],
-  entryComponents: [ChatCreateComponent],
+  exports: [ChatCreateComponent, UserUpdateComponent],
+  entryComponents: [ChatCreateComponent, UserUpdateComponent],
 })
 export class ModalsModule {}

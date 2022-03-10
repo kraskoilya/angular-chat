@@ -36,6 +36,9 @@
   <ul nz-menu
       nzSelectable>
     <li nz-menu-item
+        (click)="edit()"
+        nzType="primary">Edit myself</li>
+    <li nz-menu-item
         (click)="createChat()"
         nzType="primary">Create chat</li>
     <li nz-menu-item

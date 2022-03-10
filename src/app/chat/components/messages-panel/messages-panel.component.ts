@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { filter } from 'rxjs/operators';
 import { createHttpParams } from 'src/app/core/helpers';
 import { User } from 'src/app/core/models/user';
 import { SocketService } from 'src/app/core/services/socket.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { ChatCreateComponent } from 'src/app/shared/modals/chat-create/chat-create.component';
 import { Message } from '../../models/message';
 import { MessagesService } from '../../services/messages.service';
 
@@ -25,6 +27,7 @@ export class MessagesPanelComponent implements OnInit, OnDestroy {
   constructor(
     private userService: UserService,
     private crudService: MessagesService,
+    private modalService: NzModalService,
     private route: ActivatedRoute,
     private socketService: SocketService
   ) {}
@@ -52,6 +55,13 @@ export class MessagesPanelComponent implements OnInit, OnDestroy {
         this.crudService.url = `chats/${res.id}/messages`;
         this.getItems();
       }
+    });
+  }
+
+  createChat(): void {
+    this.modalService.create({
+      nzTitle: 'Create new chat',
+      nzContent: ChatCreateComponent,
     });
   }
 

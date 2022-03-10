@@ -1,0 +1,95 @@
+<form class="d-flex flex-column"
+      *ngIf="form"
+      [formGroup]="form"
+      (ngSubmit)="send()"
+      autocomplete="off">
+
+  <div class="d-flex w-100">
+    <div class="form-control d-flex flex-column w-100">
+      <label for="first_name">First name</label>
+      <input formControlName="first_name"
+             type="text"
+             placeholder="First name"
+             name="first_name"
+             id="first_name">
+
+      <div *ngIf="form.get('first_name')?.invalid &&
+                                        form.get('first_name')?.errors &&
+                                        (form.get('last_name')?.dirty || form.get('first_name')?.touched)">
+        <small class="text-danger"
+               *ngIf="form.get('first_name')?.hasError('required')">
+          This field is required.
+        </small>
+        <small class="text-danger"
+               *ngIf="form.get('first_name')?.hasError('maxlength')">
+          The maximum length for this field is {{form.get('first_name')?.errors?.maxlength?.requiredLength}} characters.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control ml-10 d-flex flex-column w-100 ">
+      <label for="last_name">Last name</label>
+      <input formControlName="last_name"
+             placeholder="Last name"
+             type="text"
+             name="last_name"
+             id="last_name">
+
+      <div *ngIf="form.get('last_name')?.invalid &&
+                                              form.get('last_name')?.errors &&
+                                              (form.get('last_name')?.dirty || form.get('last_name')?.touched)">
+        <small class="text-danger"
+               *ngIf="form.get('last_name')?.hasError('required')">
+          This field is required.
+        </small>
+        <small class="text-danger"
+               *ngIf="form.get('last_name')?.hasError('maxlength')">
+          The maximum length for this field is {{form.get('last_name')?.errors?.maxlength?.requiredLength}} characters.
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-form__control form-control">
+    <label for="email">Login</label>
+    <input formControlName="email"
+           type="text"
+           placeholder="Login"
+           name="email"
+           id="email">
+
+    <div *ngIf="form.get('email')?.invalid &&
+                                form.get('email')?.errors &&
+                                (form.get('email')?.dirty || form.get('email')?.touched)">
+      <small class="text-danger"
+             *ngIf="form.get('email')?.hasError('required')">
+        This field is required.
+      </small>
+
+      <small class="text-danger"
+             *ngIf="form.get('email')?.hasError('email')">
+        Inccorect email
+      </small>
+    </div>
+  </div>
+
+  <section class="error-block"
+           *ngIf="errorMessage">
+    <p class="mb-0">
+      {{errorMessage}}
+    </p>
+  </section>
+
+</form>
+
+<nz-modal>
+
+  <div *nzModalFooter>
+    <button nz-button
+            nzType="default"
+            (click)="destroyModal()">Cancel</button>
+    <button nz-button
+            nzType="primary"
+            (click)="send()">Update</button>
+  </div>
+</nz-modal>
