@@ -7,6 +7,10 @@ describe('BaseItem', () => {
     updatedAt: '11.11.1990',
   };
 
+  afterEach(() => {
+    mockBaseClass = null as never;
+  });
+
   it('should create an instance', () => {
     expect(new BaseItem(mockBaseClass)).toBeTruthy();
   });

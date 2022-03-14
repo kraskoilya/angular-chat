@@ -31,7 +31,7 @@ export class UserService {
   update(item: Partial<User>): Observable<User> {
     return this.http.patch<User>(`users/${item.id}`, item).pipe(
       tap((el) => {
-        if (item.id == this.user.id) {
+        if (item?.id == this.user?.id) {
           this.user = new User(el);
         }
         return el;
@@ -42,7 +42,7 @@ export class UserService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>('users').pipe(
       map((el) => {
-        return el.map((item) => new User(item));
+        return el?.length ? el?.map((item) => new User(item)) : [];
       })
     );
   }

@@ -8,6 +8,7 @@ import { appRoutes } from 'src/app/app.routes';
 import { httpErrorResponceHandler } from '../helpers';
 import { AUTH_TOKEN_STORAGE_KEY } from '../mics/injection-tokens';
 import { AccessData } from '../models/auth';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -92,7 +93,7 @@ export class AuthService {
     this.interruptedUrl = url;
   }
 
-  login(params: HttpParams, form: FormGroup): Observable<any> {
+  login(params: HttpParams, form: FormGroup): Observable<User> {
     return this.http.post(`${this.URL}/login`, params).pipe(
       tap((res: any) => this.updateData(res)),
       catchError((err) => {

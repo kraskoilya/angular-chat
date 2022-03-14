@@ -48,7 +48,7 @@ export class UserUpdateComponent implements OnInit {
     }
 
     const body = { ...this.form.value };
-    body.id = this.item.id;
+    body.id = this.item?.id;
 
     this.userService.update(body).subscribe(
       (res) => {
